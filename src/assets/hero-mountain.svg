@@ -1,0 +1,45 @@
+<svg width="1600" height="700" viewBox="0 0 1600 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b2559"/>
+      <stop offset="55%" stop-color="#123e8f"/>
+      <stop offset="100%" stop-color="#1c56b8"/>
+    </linearGradient>
+    <linearGradient id="peakLit" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffb454"/>
+      <stop offset="45%" stop-color="#ff8a3d"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="peakShadow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#0f2f66"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="60%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#ffd9a0" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ffd9a0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="700" fill="url(#sky)"/>
+  <rect width="1600" height="700" fill="url(#glow)"/>
+
+  <!-- soft clouds -->
+  <ellipse cx="880" cy="180" rx="260" ry="70" fill="#f4b878" opacity="0.35"/>
+  <ellipse cx="760" cy="230" rx="200" ry="55" fill="#f7c99a" opacity="0.3"/>
+  <ellipse cx="1000" cy="140" rx="180" ry="50" fill="#fbdcb8" opacity="0.3"/>
+
+  <!-- back range -->
+  <path d="M0 480 L180 380 L340 460 L520 360 L700 470 L900 380 L1080 470 L1260 400 L1440 470 L1600 420 L1600 700 L0 700 Z" fill="#173a78" opacity="0.85"/>
+
+  <!-- main peak -->
+  <path d="M120 620 L520 190 L640 330 L780 260 L1120 620 Z" fill="url(#peakShadow)"/>
+  <path d="M520 190 L640 330 L560 340 L500 300 Z" fill="url(#peakLit)"/>
+  <path d="M780 260 L860 350 L960 460 L700 460 Z" fill="url(#peakLit)" opacity="0.9"/>
+
+  <!-- snow ridges -->
+  <path d="M520 190 L560 250 L610 230 L640 330" fill="none" stroke="#fff7ed" stroke-width="4" opacity="0.7"/>
+  <path d="M300 460 L420 380 L520 430 L620 380" fill="none" stroke="#e2e8f0" stroke-width="3" opacity="0.5"/>
+
+  <!-- foreground silhouette -->
+  <path d="M0 700 L0 600 L160 520 L340 610 L520 540 L700 620 L900 560 L1100 630 L1300 580 L1600 630 L1600 700 Z" fill="#050d1f"/>
+</svg>

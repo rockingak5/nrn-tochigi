@@ -1,0 +1,40 @@
+<svg width="800" height="900" viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e9ecf3"/>
+      <stop offset="100%" stop-color="#cfd6e4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="900" fill="url(#bg)"/>
+
+  <!-- ground blanket -->
+  <rect x="0" y="680" width="800" height="220" fill="#b91c3c" opacity="0.15"/>
+
+  <!-- child left (white dress) -->
+  <circle cx="290" cy="470" r="70" fill="#3b2a20"/>
+  <circle cx="290" cy="460" r="55" fill="#e8b48c"/>
+  <path d="M210 620 Q290 520 380 560 L400 780 Q290 830 190 780 Z" fill="#fdfdfd" stroke="#e5e7eb" stroke-width="2"/>
+  <path d="M330 540 Q420 480 470 420" stroke="#e8b48c" stroke-width="26" stroke-linecap="round" fill="none"/>
+
+  <!-- child right (red topi outfit) -->
+  <circle cx="560" cy="500" r="66" fill="#3b2a20"/>
+  <circle cx="560" cy="492" r="50" fill="#e8b48c"/>
+  <path d="M510 460 Q560 420 610 460 L610 500 Q560 480 510 500 Z" fill="#7a1f2b"/>
+  <path d="M490 630 Q560 550 640 600 L650 800 Q560 850 470 800 Z" fill="#b91c3c" stroke="#7a1f2b" stroke-width="2"/>
+
+  <!-- marigold garland arc -->
+  <g fill="#f4a13a" stroke="#c9791a" stroke-width="1.5">
+    <circle cx="470" cy="420" r="16"/>
+    <circle cx="495" cy="405" r="16"/>
+    <circle cx="520" cy="398" r="16"/>
+    <circle cx="545" cy="400" r="16"/>
+    <circle cx="565" cy="415" r="16"/>
+  </g>
+
+  <!-- small marigold pieces scattered -->
+  <g fill="#f4a13a" opacity="0.85">
+    <circle cx="250" cy="760" r="10"/>
+    <circle cx="600" cy="770" r="9"/>
+    <circle cx="420" cy="800" r="8"/>
+  </g>
+</svg>

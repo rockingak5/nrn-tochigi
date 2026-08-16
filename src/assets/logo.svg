@@ -1,0 +1,18 @@
+<svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fcd34d"/>
+      <stop offset="45%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#1e40af"/>
+    </linearGradient>
+  </defs>
+  <circle cx="70" cy="70" r="68" fill="#0b2a5c" stroke="#f5f7fb" stroke-width="3"/>
+  <circle cx="70" cy="70" r="58" fill="url(#skyGrad)"/>
+  <circle cx="70" cy="38" r="12" fill="#fde68a"/>
+  <path d="M20 96 L52 52 L68 76 L82 58 L120 96 Z" fill="#1e3a8a"/>
+  <path d="M52 52 L60 66 L68 76 L58 76 Z" fill="#f8fafc"/>
+  <path d="M82 58 L90 70 L100 82 L74 82 Z" fill="#f8fafc" opacity="0.9"/>
+  <rect x="4" y="96" width="132" height="34" rx="17" fill="#f5f7fb"/>
+  <text x="70" y="118" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="20" fill="#0b2a5c">NRNA</text>
+  <text x="70" y="16" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#f5f7fb" font-weight="600">NON RESIDENT NEPALI ASSOCIATION</text>
+</svg>
