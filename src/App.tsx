@@ -6,11 +6,11 @@ import News from './pages/News'
 import OurTeam from './pages/OurTeam'
 import Services from './pages/Services'
 import Contact from './pages/Contact'
-import PlaceholderPage from './pages/PlaceholderPage'
+import ContentPage from './pages/ContentPage'
 import NotFound from './pages/NotFound'
 import { othersLinks, aboutLinks } from './navLinks'
 
-const placeholderRoutes = [...othersLinks, ...aboutLinks]
+const contentRoutes = [...othersLinks, ...aboutLinks]
 
 function App() {
   return (
@@ -23,11 +23,11 @@ function App() {
           <Route path="our-team" element={<OurTeam />} />
           <Route path="services" element={<Services />} />
           <Route path="contact" element={<Contact />} />
-          {placeholderRoutes.map((link) => (
+          {contentRoutes.map((link) => (
             <Route
               key={link.to}
               path={link.to.slice(1)}
-              element={<PlaceholderPage title={link.label} />}
+              element={<ContentPage slug={link.to} fallbackTitle={link.label} />}
             />
           ))}
           <Route path="*" element={<NotFound />} />
