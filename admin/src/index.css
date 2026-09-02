@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-navy: #0d2a5c;
+  --color-brand-pill: #dbe4f7;
+  --color-brand-pill-hover: #c6d4f2;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+}

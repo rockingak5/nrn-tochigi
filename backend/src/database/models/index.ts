@@ -1,0 +1,11 @@
+export { sequelize } from '../sequelize';
+export { default as User } from './user.model';
+export { default as Admin } from './admin.model';
+export { default as NewsItem } from './newsItem.model';
+export { default as Event } from './event.model';
+export { default as Service } from './service.model';
+export { default as TeamMember } from './teamMember.model';
+export { default as Page } from './page.model';
+export { default as HomeSettings } from './homeSettings.model';
+export { default as Activity } from './activity.model';
+export { default as ContactMessage } from './contactMessage.model';
