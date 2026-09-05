@@ -13,7 +13,11 @@ import Messages from './pages/Messages'
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      {/* basename matches Vite's `base` (set to '/admin/' for production
+          builds so this app works mounted under /admin on the unified
+          server, and '/' in dev) — without it react-router tries to match
+          routes against the full "/admin/..." pathname and fails. */}
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route element={<Layout />}>
