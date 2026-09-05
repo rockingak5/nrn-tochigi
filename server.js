@@ -26,6 +26,12 @@ const __dirname = path.dirname(__filename)
 
 const app = express()
 
+// TEMP DEBUG — remove after diagnosing the session-cookie issue on Preview.
+app.use((req, _res, next) => {
+  console.log('TEMP_DEBUG_COOKIE_HEADER_PRESENT', req.method, req.path, req.headers.cookie ? 'yes' : 'no')
+  next()
+})
+
 // --- API (mounted first so it takes priority over the static file servers) ---
 // backendApp already wires up CORS, sessions, /health, /uploads and all
 // /api/* routes internally. Because everything now runs on one origin,
