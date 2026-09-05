@@ -28,7 +28,10 @@ const app = express()
 
 // TEMP DEBUG — remove after diagnosing the session-cookie issue on Preview.
 app.use((req, _res, next) => {
-  console.log('TEMP_DEBUG_COOKIE_HEADER_PRESENT', req.method, req.path, req.headers.cookie ? 'yes' : 'no')
+  const raw = req.headers.cookie || ''
+  const names = raw.split(';').map((c) => c.split('=')[0].trim()).filter(Boolean)
+  const hasSid = names.includes('connect.sid')
+  console.log('TEMP_DEBUG_COOKIES', req.method, req.path, 'names=' + JSON.stringify(names), 'hasSid=' + hasSid)
   next()
 })
 
