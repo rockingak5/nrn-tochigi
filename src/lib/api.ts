@@ -1,4 +1,7 @@
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:5000'
+// In production this is served from the same origin as the API (unified
+// deploy), so an empty string (relative URLs) is the right default. Set
+// VITE_API_URL only when the API lives on a different origin, e.g. local dev.
+const API_URL = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? 'http://localhost:5000' : '')
 
 export class ApiError extends Error {
   status: number
