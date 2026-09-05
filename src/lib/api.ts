@@ -1,15 +1,13 @@
-// In production this is served from the same origin as the API (unified
-// deploy), so an empty string (relative URLs) is the right default. GoDaddy's
-// PaaS auto-injects VITE_API_URL as "<this app's own origin>/api" for
-// detected Vite projects; since every call site below already includes the
-// "/api" prefix in its path, strip a trailing "/api" from that value so we
-// don't end up requesting "/api/api/...". A manually-set VITE_API_URL without
-// a trailing "/api" (e.g. for local dev against a bare API host) passes
-// through unchanged.
-const rawApiUrl = import.meta.env.VITE_API_URL
-const API_URL = rawApiUrl
-  ? rawApiUrl.replace(/\/api\/?$/, '')
-  : (import.meta.env.DEV ? 'http://localhost:5000' : '')
+// This app is served from the same origin as the API (unified single-process
+// deploy), so requests should always be relative in production. We
+// deliberately IGNORE GoDaddy's auto-injected VITE_API_URL here: it's baked
+// in at build time as "<the origin the app happened to be built under>/api"
+// (the Preview environment's URL), and GoDaddy's "Publish to Live" promotes
+// that same build to the production domain rather than rebuilding against
+// it — so trusting VITE_API_URL would send every request from the live site
+// back to the preview subdomain. Only local dev (`vite dev`, no production
+// build) falls back to a bare API host.
+const API_URL = import.meta.env.DEV ? 'http://localhost:5000' : ''
 
 export class ApiError extends Error {
   status: number
