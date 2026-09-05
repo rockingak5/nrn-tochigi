@@ -9,6 +9,32 @@
 // build) falls back to a bare API host.
 const API_URL = import.meta.env.DEV ? 'http://localhost:5000' : ''
 
+// The admin panel's session used to rely on a cookie (`connect.sid`), but
+// GoDaddy's hosting platform sits behind an edge/CDN layer that doesn't
+// reliably pass that cookie back to the browser (confirmed via server logs
+// on both the preview subdomain and the live domain: it's simply never
+// sent back on any later request). So auth instead uses a bearer token,
+// handed back on login and stored here, sent as a plain `Authorization`
+// header — no cookie involved, so there's nothing for the platform to drop.
+const TOKEN_KEY = 'admin_token'
+
+export function getToken(): string | null {
+  try {
+    return localStorage.getItem(TOKEN_KEY)
+  } catch {
+    return null
+  }
+}
+
+export function setToken(token: string | null) {
+  try {
+    if (token) localStorage.setItem(TOKEN_KEY, token)
+    else localStorage.removeItem(TOKEN_KEY)
+  } catch {
+    // localStorage unavailable (private mode, etc.) — auth just won't persist.
+  }
+}
+
 export class ApiError extends Error {
   status: number
 
@@ -19,16 +45,21 @@ export class ApiError extends Error {
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const token = getToken()
   const res = await fetch(`${API_URL}${path}`, {
     ...init,
     credentials: 'include',
-    headers:
-      init?.body && !(init.body instanceof FormData)
-        ? { 'Content-Type': 'application/json', ...init.headers }
-        : init?.headers,
+    headers: {
+      ...(init?.body && !(init.body instanceof FormData)
+        ? { 'Content-Type': 'application/json' }
+        : {}),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...init?.headers,
+    },
   })
 
   if (!res.ok) {
+    if (res.status === 401) setToken(null)
     const body = await res.json().catch(() => ({ message: res.statusText }))
     throw new ApiError(res.status, body.message ?? res.statusText)
   }
