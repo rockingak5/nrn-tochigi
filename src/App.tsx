@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import Events from './pages/Events'
 import News from './pages/News'
+import NewsAndEvents from './pages/NewsAndEvents'
 import OurTeam from './pages/OurTeam'
 import Services from './pages/Services'
 import Contact from './pages/Contact'
@@ -20,6 +21,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="events" element={<Events />} />
           <Route path="news" element={<News />} />
+          <Route path="news-events" element={<NewsAndEvents />} />
           <Route path="our-team" element={<OurTeam />} />
           <Route path="services" element={<Services />} />
           <Route path="contact" element={<Contact />} />
