@@ -8,6 +8,7 @@ import Events from './pages/Events'
 import Services from './pages/Services'
 import Team from './pages/Team'
 import Pages from './pages/Pages'
+import SocialLinks from './pages/SocialLinks'
 import Messages from './pages/Messages'
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path="services" element={<Services />} />
             <Route path="team" element={<Team />} />
             <Route path="pages" element={<Pages />} />
+            <Route path="social-links" element={<SocialLinks />} />
             <Route path="messages" element={<Messages />} />
           </Route>
         </Routes>
