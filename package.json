@@ -8,7 +8,7 @@
     "build": "npm run build:site && npm run build:admin && npm run build:backend",
     "build:site": "tsc -b && vite build",
     "build:admin": "npm install --prefix admin && npm run build --prefix admin",
-    "build:backend": "tsc -p backend/tsconfig.json && mkdir -p backend/dist/database/config && cp backend/src/database/config/config.js backend/dist/database/config/config.js",
+    "build:backend": "npm install --prefix backend && tsc -p backend/tsconfig.json && mkdir -p backend/dist/database/config && cp backend/src/database/config/config.js backend/dist/database/config/config.js",
     "start": "node server.js",
     "lint": "oxlint",
     "preview": "vite preview"
