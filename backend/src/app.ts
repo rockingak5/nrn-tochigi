@@ -36,6 +36,9 @@ app.use(
   }),
 );
 
+// New uploads go straight to S3 (see uploads.controller.ts) and are served
+// from there. This still serves any pre-existing local files uploaded
+// before that switch, and gives them a stable URL for local dev's disk too.
 app.use('/uploads', express.static(path.resolve(process.cwd(), 'uploads')));
 
 app.get('/health', (_req, res) => {

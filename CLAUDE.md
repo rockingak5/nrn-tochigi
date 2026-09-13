@@ -61,7 +61,7 @@ Layered Express app: `routes/*.routes.ts` → `controllers/*.controller.ts` → 
 
 **Content resources** (news, events, services, team members) all follow the same shape: one `<name>.routes.ts` per resource with a public `GET /` and admin-gated `POST/PUT/DELETE` (via `requireAdminAuth`), backed by a matching `<name>.controller.ts` and Sequelize model. `pages.routes.ts` is the one exception — `Page` rows are a **fixed, pre-seeded set** keyed by `slug` (one per entry in `src/navLinks.ts`'s `othersLinks`/`aboutLinks`), so it only supports read + update, never create/delete from the admin UI.
 
-**Image uploads** go through `POST /api/admin/uploads` (multer, disk storage into `backend/uploads/`, returned as a `/uploads/<file>` URL) and are served back via `express.static`.
+**Image uploads** go through `POST /api/admin/uploads` (multer memory storage → `src/utils/s3.ts` streams the buffer to S3, returned as a full S3/CDN URL). `AWS_REGION`/`AWS_S3_BUCKET`/credentials are required in every environment — there is no local-disk fallback (see `backend/README.md` for bucket policy/IAM setup). `express.static` still serves `backend/uploads/` for any pre-existing local files uploaded before this switch.
 
 **Migrations/seeders are plain CommonJS `.js`**, not TypeScript, even though the rest of the backend is TS — this is intentional (see `backend/README.md`): `sequelize-cli` `require()`s them directly, and TS loading conflicts with that in this Node setup. Follow the existing files in `database/migrations/` and `database/seeders/` as the template for new ones.
 
