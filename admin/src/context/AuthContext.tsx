@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
-import { api } from '../lib/api'
+import { api, setToken } from '../lib/api'
 
 type Admin = { id: number; username: string }
+type LoginResponse = Admin & { token: string }
 
 type AuthContextValue = {
   admin: Admin | null
@@ -25,12 +26,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   async function login(username: string, password: string) {
-    const result = await api.post<Admin>('/api/admin/login', { username, password })
-    setAdmin(result)
+    const result = await api.post<LoginResponse>('/api/admin/login', { username, password })
+    setToken(result.token)
+    setAdmin({ id: result.id, username: result.username })
   }
 
   async function logout() {
     await api.post('/api/admin/logout', {}).catch(() => {})
+    setToken(null)
     setAdmin(null)
   }
 

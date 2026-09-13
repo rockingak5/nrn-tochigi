@@ -1,42 +1,43 @@
 import { DataTypes, Model, type InferAttributes, type InferCreationAttributes, type CreationOptional } from 'sequelize';
 import { sequelize } from '../sequelize';
 
-export class HomeSettings extends Model<InferAttributes<HomeSettings>, InferCreationAttributes<HomeSettings>> {
+export class SocialLink extends Model<InferAttributes<SocialLink>, InferCreationAttributes<SocialLink>> {
   declare id: CreationOptional<number>;
-  declare heroImageUrl: CreationOptional<string | null>;
-  declare activitiesImageUrl: CreationOptional<string | null>;
-  declare siteLogoUrl: CreationOptional<string | null>;
+  declare platform: string;
+  declare url: string;
+  declare order: CreationOptional<number>;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
 }
 
-HomeSettings.init(
+SocialLink.init(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
     },
-    heroImageUrl: {
+    platform: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
-    activitiesImageUrl: {
+    url: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
-    siteLogoUrl: {
-      type: DataTypes.STRING,
-      allowNull: true,
+    order: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   },
   {
     sequelize,
-    tableName: 'home_settings',
-    modelName: 'HomeSettings',
+    tableName: 'social_links',
+    modelName: 'SocialLink',
   },
 );
 
-export default HomeSettings;
+export default SocialLink;

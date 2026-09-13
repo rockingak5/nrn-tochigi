@@ -11,6 +11,7 @@ import homeSettingsRoutes from './homeSettings.routes';
 import activitiesRoutes from './activities.routes';
 import contactRoutes from './contact.routes';
 import contactMessagesRoutes from './contactMessages.routes';
+import socialLinksRoutes from './socialLinks.routes';
 
 const router = Router();
 
@@ -26,5 +27,6 @@ router.use('/pages', pagesRoutes);
 router.use('/home-settings', homeSettingsRoutes);
 router.use('/activities', activitiesRoutes);
 router.use('/contact', contactRoutes);
+router.use('/social-links', socialLinksRoutes);
 
 export default router;

@@ -4,7 +4,7 @@
 // each entry is one of the nav pages editable from the admin panel's Pages section.
 const PAGES = [
   { slug: '/helpline', title: 'Helpline' },
-  { slug: '/medical-institutions', title: 'Medical Institutions' },
+  { slug: '/medical-institutions', title: 'Medical Information' },
   { slug: '/school-search', title: 'School Search' },
   { slug: '/japanese-classes', title: 'Japanese Classes' },
   { slug: '/discover-tochigi', title: 'Discover Tochigi' },
@@ -14,7 +14,7 @@ const PAGES = [
   { slug: '/activities', title: 'Activities' },
   { slug: '/project-info', title: 'Project Info' },
   { slug: '/nrna-nepal', title: 'NRNA/Nepal' },
-  { slug: '/about-nrna', title: 'About NRNA' },
+  { slug: '/about-nrna', title: 'About NRNA Tochigi' },
   { slug: '/notice-board', title: 'Notice Board' },
   { slug: '/downloads', title: 'Downloads' },
 ];

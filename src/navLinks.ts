@@ -1,14 +1,10 @@
 export type NavLink = { label: string; to: string }
 
-export const primaryLinks: NavLink[] = [
-  { label: 'Home', to: '/' },
-  { label: 'Events', to: '/events' },
-  { label: 'News', to: '/news' },
-  { label: 'Our Team', to: '/our-team' },
-  { label: 'Services', to: '/services' },
-  { label: 'Contact', to: '/contact' },
-]
-
+// Pages backed by the generic Page model (admin-editable via the admin
+// panel's Pages section) — each entry needs a matching seeded Page row keyed
+// by `to` as the slug. Kept as the full set (including ones with no content
+// registered yet) so those routes stay reachable and editable; `menuLinks`
+// below decides what's actually shown in the header/mobile nav.
 export const othersLinks: NavLink[] = [
   { label: 'Helpline', to: '/helpline' },
   { label: 'Medical Institutions', to: '/medical-institutions' },
@@ -29,4 +25,12 @@ export const aboutLinks: NavLink[] = [
   { label: 'Downloads', to: '/downloads' },
 ]
 
-export const allLinks: NavLink[] = [...primaryLinks, ...othersLinks, ...aboutLinks]
+// The curated set of top-level links always shown in the site header and
+// mobile nav. Everything else backed by the Page model (Jobs, Finance,
+// About NRNA Tochigi, etc.) surfaces automatically in the "Others" dropdown
+// once it has content — see Navigation.tsx.
+export const menuLinks: NavLink[] = [
+  { label: 'Home', to: '/' },
+  { label: 'Our Team', to: '/our-team' },
+  { label: 'News and Events', to: '/news-events' },
+]

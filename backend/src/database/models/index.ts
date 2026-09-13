@@ -9,3 +9,4 @@ export { default as Page } from './page.model';
 export { default as HomeSettings } from './homeSettings.model';
 export { default as Activity } from './activity.model';
 export { default as ContactMessage } from './contactMessage.model';
+export { default as SocialLink } from './socialLink.model';

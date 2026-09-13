@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 import { Page } from '../database/models';
+import { cleanupReplacedImage } from '../utils/s3';
 
 export async function list(_req: Request, res: Response, next: NextFunction) {
   try {
@@ -32,8 +33,10 @@ export async function update(req: Request, res: Response, next: NextFunction) {
       res.status(404).json({ message: 'Not found' });
       return;
     }
+    const oldImageUrl = page.imageUrl;
     const { title, imageUrl, body } = req.body;
     await page.update({ title, imageUrl, body });
+    cleanupReplacedImage(oldImageUrl, page.imageUrl);
     res.json(page);
   } catch (err) {
     next(err);
