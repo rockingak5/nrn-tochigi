@@ -9,6 +9,7 @@ const navItems = [
   { to: '/team', label: 'Our Team' },
   { to: '/pages', label: 'Pages' },
   { to: '/social-links', label: 'Social Links' },
+  { to: '/important-links', label: 'Important Links' },
   { to: '/messages', label: 'Messages' },
 ]
 

@@ -32,5 +32,6 @@ export const aboutLinks: NavLink[] = [
 export const menuLinks: NavLink[] = [
   { label: 'Home', to: '/' },
   { label: 'Our Team', to: '/our-team' },
+  { label: 'Our Services', to: '/services' },
   { label: 'News and Events', to: '/news-events' },
 ]
