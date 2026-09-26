@@ -21,6 +21,9 @@ const backendApp = appPkg.default
 import modelsPkg from './backend/dist/database/models/index.js'
 const { sequelize, Admin } = modelsPkg
 
+import migrationsPkg from './backend/dist/database/runMigrations.js'
+const { runMigrationsAndSeeders } = migrationsPkg
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
@@ -73,6 +76,11 @@ async function main() {
   // Create any tables that don't exist yet (fresh database). This never
   // drops or alters existing tables/columns.
   await sequelize.sync()
+  // Bring schema/seed data up to date with the real sequelize-cli
+  // migrations/seeders (there's no shell access on the host to run
+  // `sequelize-cli db:migrate`/`db:seed` by hand). Safe to run on every
+  // boot — it only ever applies pending migrations/seeders.
+  await runMigrationsAndSeeders()
   await bootstrapAdmin()
 
   app.listen(port, () => {
