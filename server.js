@@ -71,7 +71,16 @@ async function bootstrapAdmin() {
   console.log(`Created initial admin user "${ADMIN_USERNAME}"`)
 }
 
+function logEnvDiagnostics() {
+  // Temporary — remove once the production S3 upload credentials issue is
+  // resolved. Logs only whether each var is present, never the values.
+  const keys = ['AWS_REGION', 'AWS_S3_BUCKET', 'AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY']
+  const status = Object.fromEntries(keys.map((key) => [key, Boolean(process.env[key])]))
+  console.log('[env diagnostics]', status)
+}
+
 async function main() {
+  logEnvDiagnostics()
   await sequelize.authenticate()
   // Create any tables that don't exist yet (fresh database). This never
   // drops or alters existing tables/columns.
@@ -84,7 +93,7 @@ async function main() {
   await bootstrapAdmin()
 
   app.listen(port, () => {
-    console.log(`nrn-tochigi (public + admin + api) listening on port ${port}`)
+    console.log(`NRNA-Tochigi(public + admin + api) listening on port ${port}`)
   })
 }
 

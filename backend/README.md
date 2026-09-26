@@ -1,4 +1,4 @@
-# nrn-tochigi backend
+# NRNA-Tochigibackend
 
 Node.js + Express + TypeScript API, using Sequelize (MySQL) with migrations via `sequelize-cli`.
 
