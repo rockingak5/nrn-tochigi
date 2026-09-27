@@ -26,8 +26,18 @@ function getConfig() {
   return { region, bucket, publicBaseUrl };
 }
 
+function getCredentials() {
+  // GoDaddy's hosting doesn't pass AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY
+  // through to the app, so prefer S3_-prefixed names and fall back to the
+  // standard ones (e.g. for local .env use).
+  const accessKeyId = process.env.S3_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.S3_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY;
+  // Undefined lets the SDK fall back to its default provider chain.
+  return accessKeyId && secretAccessKey ? { accessKeyId, secretAccessKey } : undefined;
+}
+
 function getClient(region: string): S3Client {
-  client ??= new S3Client({ region });
+  client ??= new S3Client({ region, credentials: getCredentials() });
   return client;
 }
 
