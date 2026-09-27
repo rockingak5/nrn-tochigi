@@ -5,6 +5,7 @@ export class HomeSettings extends Model<InferAttributes<HomeSettings>, InferCrea
   declare id: CreationOptional<number>;
   declare heroImageUrl: CreationOptional<string | null>;
   declare activitiesImageUrl: CreationOptional<string | null>;
+  declare siteLogoUrl: CreationOptional<string | null>;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
 }
@@ -21,6 +22,10 @@ HomeSettings.init(
       allowNull: true,
     },
     activitiesImageUrl: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    siteLogoUrl: {
       type: DataTypes.STRING,
       allowNull: true,
     },

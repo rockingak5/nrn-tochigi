@@ -8,6 +8,8 @@ const navItems = [
   { to: '/services', label: 'Services' },
   { to: '/team', label: 'Our Team' },
   { to: '/pages', label: 'Pages' },
+  { to: '/social-links', label: 'Social Links' },
+  { to: '/important-links', label: 'Important Links' },
   { to: '/messages', label: 'Messages' },
 ]
 
@@ -26,7 +28,7 @@ export default function Layout() {
     <div className="flex min-h-screen bg-slate-50">
       <aside className="flex w-56 shrink-0 flex-col border-r border-slate-200 bg-white">
         <div className="border-b border-slate-200 px-6 py-5">
-          <span className="font-bold text-brand-navy">nrn-tochigi admin</span>
+          <span className="font-bold text-brand-navy">NRNA-Tochigi Admin</span>
         </div>
         <nav className="flex flex-1 flex-col gap-1 px-3 py-4">
           {navItems.map((item) => (

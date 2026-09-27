@@ -1,5 +1,3 @@
-import crypto from 'node:crypto';
-import path from 'node:path';
 import { Router } from 'express';
 import multer from 'multer';
 import { upload as uploadController } from '../controllers/uploads.controller';
@@ -7,16 +5,11 @@ import { requireAdminAuth } from '../middlewares/requireAdminAuth';
 
 const ALLOWED_MIME_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml']);
 
-const storage = multer.diskStorage({
-  destination: path.resolve(process.cwd(), 'uploads'),
-  filename: (_req, file, cb) => {
-    const ext = path.extname(file.originalname).toLowerCase();
-    cb(null, `${crypto.randomUUID()}${ext}`);
-  },
-});
-
+// Buffered in memory (files are capped at 5MB below) rather than written to
+// local disk, since the controller streams the buffer straight to S3 —
+// there is no local file to clean up either way.
 const upload = multer({
-  storage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (_req, file, cb) => {
     if (!ALLOWED_MIME_TYPES.has(file.mimetype)) {

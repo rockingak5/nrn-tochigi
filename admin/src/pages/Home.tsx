@@ -5,6 +5,7 @@ import ResourceEditor from '../components/ResourceEditor'
 type HomeSettings = {
   heroImageUrl: string | null
   activitiesImageUrl: string | null
+  siteLogoUrl: string | null
 }
 
 function ImageSetting({
@@ -71,6 +72,19 @@ export default function Home() {
   return (
     <div className="space-y-8">
       <div>
+        <h1 className="mb-6 text-xl font-bold text-brand-navy">Site branding</h1>
+        {settings && (
+          <div className="grid gap-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm sm:grid-cols-2">
+            <ImageSetting
+              label="Site logo"
+              imageUrl={settings.siteLogoUrl}
+              onChange={(url) => save({ ...settings, siteLogoUrl: url })}
+            />
+          </div>
+        )}
+      </div>
+
+      <div>
         <h1 className="mb-6 text-xl font-bold text-brand-navy">Home page images</h1>
         {settings && (
           <div className="grid gap-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm sm:grid-cols-2">
@@ -86,9 +100,13 @@ export default function Home() {
             />
           </div>
         )}
-        {saving && <p className="mt-2 text-xs text-slate-500">Saving…</p>}
-        {saved && !saving && <p className="mt-2 text-xs text-green-600">Saved</p>}
       </div>
+
+      {(saving || saved) && (
+        <p className={`text-xs ${saving ? 'text-slate-500' : 'text-green-600'}`}>
+          {saving ? 'Saving…' : 'Saved'}
+        </p>
+      )}
 
       <ResourceEditor
         title="Recent activities"
