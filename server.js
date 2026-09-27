@@ -74,7 +74,7 @@ async function bootstrapAdmin() {
 function logEnvDiagnostics() {
   // Temporary — remove once the production S3 upload credentials issue is
   // resolved. Logs only whether each var is present, never the values.
-  const keys = ['AWS_REGION', 'AWS_S3_BUCKET', 'AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY']
+  const keys = ['AWS_REGION', 'AWS_S3_BUCKET', 'S3_ACCESS_KEY_ID', 'S3_SECRET_ACCESS_KEY', 'AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY']
   const status = Object.fromEntries(keys.map((key) => [key, Boolean(process.env[key])]))
   console.log('[env diagnostics]', status)
 }
